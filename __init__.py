@@ -1,3 +1,5 @@
+#coding:utf8
+from __future__ import print_function
 import math
 import requests
 import datetime
@@ -6,13 +8,15 @@ import numpy as np
 import csv
 from matplotlib import pyplot as plt
 
+from .backtest import *
+from .policies import *
 
 class Data:
     """
     get data from neteasy
     """
     def __init__(self, code = '1399300'):
-        url_template = """http://quotes.money.163.com/service/chddata.html?code=%s&start=10071105&end=20160204&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP"""
+        url_template = """http://quotes.money.163.com/service/chddata.html?code=%s&start=10071105&end=20160923&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP"""
         url = url_template%(code)
         self.lines = requests.get(url).content.decode('gbk').splitlines()
 
